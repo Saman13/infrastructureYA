@@ -1,5 +1,5 @@
 variable "zone" {
-  default     = "ru-central1-c"
+  default     = "ru-central1-a"
   type        = string
   description = "Instance availability zone"
   validation {
