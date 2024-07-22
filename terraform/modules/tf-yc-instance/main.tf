@@ -2,6 +2,7 @@ resource "yandex_compute_instance" "vm-1" {
   name        = "chapter5-std-030-13"
   zone        = var.zone
   platform_id = "standard-v3"
+  //description =
   resources {
     cores  = 2
     memory = 2
@@ -12,7 +13,7 @@ resource "yandex_compute_instance" "vm-1" {
     }
   }
   network_interface {
-    subnet_id = var.instance_subnet_id
+    subnet_id = lookup(var.instance_subnet_id, var.zone)
     nat       = false
   }
   metadata = {

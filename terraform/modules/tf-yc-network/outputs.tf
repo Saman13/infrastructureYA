@@ -1,8 +1,3 @@
-output "yandex_vpc_subnets" {
-  description = "Yandex.Cloud Subnets map"
-  value       = data.yandex_vpc_subnet.default
-}
-
-output "yandex_vpc_network" {
-  value = data.yandex_vpc_network.default.id
+output "yandex_vpc_subnet_id" {
+  value = {for k, v in data.yandex_vpc_subnet.default : k => v.id}
 }

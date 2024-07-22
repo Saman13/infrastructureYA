@@ -1,5 +1,5 @@
 variable "zone" {
-  default     = "ru-central1-a"
+  default     = "ru-central1-c"
   type        = string
   description = "Instance availability zone"
   validation {
@@ -19,5 +19,4 @@ variable "image_id" {
   nullable    = false
 }
 variable "instance_subnet_id" {
-  default = "e9bra95g807mc61p927h"
 }

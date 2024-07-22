@@ -13,4 +13,3 @@ variable "token" {
   sensitive = false
   nullable  = false
 }
-
