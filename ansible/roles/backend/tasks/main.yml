@@ -38,9 +38,11 @@
     shell: /sbin/nologin
 
 - name: смена владельца
+  become: true
   file:
     path: /opt/sausage-store/bin
     owner: "backend"
+    group: "backend"
     recurse: true
     state: directory
 
