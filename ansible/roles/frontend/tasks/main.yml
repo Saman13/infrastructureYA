@@ -58,6 +58,10 @@
     src: /home/student/sausage-store.conf
     dest: /etc/nginx/sites-available/sausage-store.conf
 
+- name: Создать символическую ссылку
+  command: ln -s /etc/nginx/sites-available/sausage-store.conf /etc/nginx/sites-enabled
+  become: true
+
 - name: Перезапускаем Nginx
   become: true
   systemd:
