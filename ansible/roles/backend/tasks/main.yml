@@ -16,6 +16,12 @@
     name: python3-lxml
     state: present
 
+- name: Создадим директорию /opt/sausage-store/bin/
+  become: yes
+  file:
+    path: /opt/sausage-store/bin/
+    state: directory
+
 - name: Скачать артефакт
   get_url:
     url: "https://nexus.praktikum-services.tech/repository/std-030-13-frontend2/1.0.1362306/sausage-store-1.0.1362306.tar.gz"
@@ -45,7 +51,7 @@
 
 - name: Шаблонизация конфига управляет настройками приложения с помощью переменных
   template:
-    src: /home/student/backen.service
+    src: /home/student/backend.service
     dest: /etc/systemd/system/sausage-store-backend.service
 
 - name: Перечитываем конфигурацию systemd
