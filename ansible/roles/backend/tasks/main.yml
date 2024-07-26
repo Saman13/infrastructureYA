@@ -19,7 +19,7 @@
 - name: Скачать артефакт
   get_url:
     url: "https://nexus.praktikum-services.tech/repository/std-030-13-frontend2/1.0.1362306/sausage-store-1.0.1362306.tar.gz"
-    dest: /opt/sausage-store/backend/lib/sausage-store.jar
+    dest: /opt/sausage-store/bin/sausage-store.jar
     username: "std-030-13"
     password: "{{ password_nexus }}"
 
@@ -33,9 +33,9 @@
 #    username: "std-030-13"
 #    password: "{{ password_nexus }}"
 
-- name: Запускаем jar-ник
-  become: true
-  command: java -jar /path/to/sausage-store-0.0.1-SNAPSHOT.jar
+#- name: Запускаем jar-ник
+#  become: true
+#  command: java -jar /opt/sausage-store/bin/sausage-store.jar
 
 - name: Добавим сервисного пользователя
   user:
