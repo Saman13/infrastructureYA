@@ -19,7 +19,7 @@
 - name: Используем модуль maven_artifact, он скачает пакет приложения с Nexus
   maven_artifact:
     dest: "/opt/sausage-store/backend/lib/sausage-store.jar"
-    repository_url: "https://nexus.praktikum-services.tech/repository/std-030-13-backend/com/yandex/practicum/devops/sausage-store/1.0.1362306/sausage-store-1.0.1362306.jar"
+    repository_url: "https://nexus.praktikum-services.tech/repository/std-030-13-backend"
     group_id: "com.yandex.practicum.devops"
     artifact_id: "sausage-store"
     version: "1.0.1362306"
