@@ -1,6 +1,6 @@
 ---
 - name: Обновление списка пакетов
-  become: true
+  become: yes
   apt:
     update_cache: yes
 
@@ -52,15 +52,18 @@
     shell: /sbin/nologin
 
 - name: Шаблонизация конфига управляет настройками приложения с помощью переменных
+  become: yes
   template:
     src: /home/student/backend.service
     dest: /etc/systemd/system/sausage-store-backend.service
 
 - name: Перечитываем конфигурацию systemd
+  become: yes
   systemd:
     daemon_reload: yes
 
 - name: всё готово - запускаем!
+  become: yes
   service:
     name: sausage-store-backend
     state: running
