@@ -35,10 +35,10 @@
     create_home: no
     shell: /sbin/nologin
 
-- name: Download artifact from Nexus
-  nexus_artifact:
+- name: Скачать артефакт
+  get_url:
     url: "https://nexus.praktikum-services.tech/repository/std-030-13-frontend2/1.0.1362306/sausage-store-1.0.1362306.tar.gz"
-    path: /tmp/sausage-store.tar.gz
+    dest: /tmp/sausage-store.tar.gz
 
 - name: Extract artifact
   unarchive:
