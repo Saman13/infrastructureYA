@@ -16,11 +16,11 @@
     name: python3-lxml
     state: present
 
-#- name: Создадим директорию /opt/sausage-store/bin/
-#  become: yes
-#  file:
-#    path: /opt/sausage-store/bin/
-#    state: directory
+- name: Создадим директорию /opt/sausage-store/bin/
+  become: yes
+  file:
+    path: /opt/sausage-store/bin/
+    state: directory
 
 - name: Скачать артефакт
   become: yes
