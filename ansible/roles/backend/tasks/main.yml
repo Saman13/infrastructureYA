@@ -33,9 +33,19 @@
 - name: Добавим сервисного пользователя
   become: true
   user:
-    name: "jarservice"
+    name: "backend"
+    group: "backend"
     create_home: no
     shell: /sbin/nologin
+
+- name: Change owner of a folder
+  file:
+    path: /opt/sausage-store/bin
+    owner: "backend"
+    group: "backend"
+    recurse: yes
+    state: directory
+
 
 - name: Шаблонизация конфига управляет настройками приложения с помощью переменных
   become: true
