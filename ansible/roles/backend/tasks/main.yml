@@ -16,13 +16,14 @@
     name: python3-lxml
     state: present
 
-- name: Создадим директорию /opt/sausage-store/bin/
-  become: yes
-  file:
-    path: /opt/sausage-store/bin/
-    state: directory
+#- name: Создадим директорию /opt/sausage-store/bin/
+#  become: yes
+#  file:
+#    path: /opt/sausage-store/bin/
+#    state: directory
 
 - name: Скачать артефакт
+  become: yes
   get_url:
     url: "https://nexus.praktikum-services.tech/repository/std-030-13-frontend2/1.0.1362306/sausage-store-1.0.1362306.tar.gz"
     dest: /opt/sausage-store/bin/sausage-store.jar
