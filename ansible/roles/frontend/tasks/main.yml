@@ -39,6 +39,9 @@
   get_url:
     url: "https://nexus.praktikum-services.tech/repository/std-030-13-frontend2/1.0.1362306/sausage-store-1.0.1362306.tar.gz"
     dest: /tmp/sausage-store.tar.gz
+    username: "std-030-13"
+    password: "{{ password_nexus }}"
+
 
 - name: Extract artifact
   unarchive:
