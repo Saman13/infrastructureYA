@@ -37,12 +37,11 @@
     create_home: no
     shell: /sbin/nologin
 
-- name: Change owner of a folder
+- name: смена владельца
   file:
     path: /opt/sausage-store/bin
     owner: "backend"
-    group: "backend"
-    recurse: yes
+    recurse: true
     state: directory
 
 
