@@ -25,7 +25,7 @@
 - name: Скачать артефакт
   become: true
   get_url:
-    url: "https://nexus.praktikum-services.tech/repository/std-030-13-backend/com/yandex/practicum/devops/sausage-store/1.0.1362306/sausage-store-1.0.1362306.jar"
+    url: "https://nexus.praktikum-services.tech/repository/std-030-13-backend/com/yandex/practicum/devops/sausage-store/{{ version }}/sausage-store-{{ version }}.jar"
     dest: /opt/sausage-store/bin/sausage-store.jar
     username: "std-030-13"
     password: "{{ password_nexus }}"
