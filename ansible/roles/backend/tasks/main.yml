@@ -1,69 +1,55 @@
 ---
 - name: Обновление списка пакетов
-  become: yes
+  become: true
   apt:
     update_cache: yes
 
 - name: Установить пакет openjdk-16-jdk
-  become: yes
+  become: true
   apt:
     name: openjdk-16-jdk
     state: present
 
 - name: Установить пакет python3-lxml
-  become: yes
+  become: true
   apt:
     name: python3-lxml
     state: present
 
 - name: Создадим директорию /opt/sausage-store/bin/
-  become: yes
+  become: true
   file:
     path: /opt/sausage-store/bin/
     state: directory
 
 - name: Скачать артефакт
-  become: yes
+  become: true
   get_url:
     url: "https://nexus.praktikum-services.tech/repository/std-030-13-frontend2/1.0.1362306/sausage-store-1.0.1362306.tar.gz"
     dest: /opt/sausage-store/bin/sausage-store.jar
     username: "std-030-13"
     password: "{{ password_nexus }}"
 
-#- name: Используем модуль maven_artifact, он скачает пакет приложения с Nexus
-#  maven_artifact:
-#    dest: /opt/sausage-store/backend/lib/sausage-store.jar
-#    repository_url: "https://nexus.praktikum-services.tech/repository/std-030-13-backend"
-#    group_id: "com.yandex.practicum.devops"
-#    artifact_id: "sausage-store"
-#    version: "1.0.1362306"
-#    username: "std-030-13"
-#    password: "{{ password_nexus }}"
-
-#- name: Запускаем jar-ник
-#  become: true
-#  command: java -jar /opt/sausage-store/bin/sausage-store.jar
-
 - name: Добавим сервисного пользователя
-  become: yes
+  become: true
   user:
     name: "jarservice"
     create_home: no
     shell: /sbin/nologin
 
 - name: Шаблонизация конфига управляет настройками приложения с помощью переменных
-  become: yes
+  become: true
   template:
     src: /home/student/backend.service
     dest: /etc/systemd/system/sausage-store-backend.service
 
 - name: Перечитываем конфигурацию systemd
-  become: yes
+  become: true
   systemd:
     daemon_reload: yes
 
 - name: всё готово - запускаем!
-  become: yes
+  become: true
   service:
     name: sausage-store-backend
     state: restarted

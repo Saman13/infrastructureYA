@@ -25,6 +25,7 @@
     state: present
 
 - name: Установка nginx
+  become: true
   apt:
     name: nginx
     state: present
@@ -44,6 +45,7 @@
 
 
 - name: Extract artifact
+  become: true
   unarchive:
     src: /tmp/sausage-store.tar.gz
     dest: /opt/sausage-store/
@@ -56,6 +58,7 @@
     dest: /etc/nginx/sites-available/sausage-store.conf
 
 - name: Перезапускаем Nginx
+  become: true
   systemd:
     name: nginx
     state: restarted
