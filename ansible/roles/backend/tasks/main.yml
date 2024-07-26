@@ -66,4 +66,4 @@
   become: yes
   service:
     name: sausage-store-backend
-    state: running
+    state: restarted
