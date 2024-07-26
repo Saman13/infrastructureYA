@@ -1,0 +1,4 @@
+localhost
+10.128.0.139
+backend
+frontend
