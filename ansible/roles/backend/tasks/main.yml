@@ -1,4 +1,9 @@
 ---
+- name: Обновление списка пакетов
+  become: true
+  apt:
+    update_cache: yes
+    
 - name: Установить пакет openjdk-16-jdk
   become: yes
   apt:

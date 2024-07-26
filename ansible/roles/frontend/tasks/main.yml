@@ -1,4 +1,9 @@
 ---
+- name: Обновление списка пакетов
+  become: true
+  apt:
+    update_cache: yes
+
 - name: Установка пакета curl
   become: true
   apt:
@@ -12,11 +17,6 @@
 
 - name: Запуск скрипта установки NodeJS
   shell: "/bin/bash /tmp/setup_node.sh"
-
-- name: Обновление списка пакетов
-  become: true
-  apt:
-    update_cache: yes
 
 - name: Установка Node.js
   become: true
