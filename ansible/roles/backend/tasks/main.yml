@@ -45,6 +45,7 @@
 #  command: java -jar /opt/sausage-store/bin/sausage-store.jar
 
 - name: Добавим сервисного пользователя
+  become: yes
   user:
     name: "jarservice"
     create_home: no
