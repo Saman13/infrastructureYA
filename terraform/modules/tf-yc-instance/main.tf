@@ -13,7 +13,7 @@ resource "yandex_compute_instance" "vm-1" {
   }
   network_interface {
     subnet_id = lookup(var.instance_subnet_id, var.zone)
-    nat       = false
+    nat       = true
   }
   metadata = {
     ssh-keys  = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
