@@ -1,2 +1,58 @@
 ---
-# tasks file for frontend
+- name: Установка пакета curl
+  become: true
+  apt:
+    name: curl
+    state: present
+
+- name: Скачивание скрипта установки NodeJS
+  get_url:
+    url: "https://deb.nodesource.com/setup_16.x"
+    dest: "/tmp/setup_node.sh"
+
+- name: Запуск скрипта установки NodeJS
+  shell: "/bin/bash /tmp/setup_node.sh"
+
+- name: Обновление списка пакетов
+  become: true
+  apt:
+    update_cache: yes
+
+- name: Установка Node.js
+  become: true
+  apt:
+    name: nodejs
+    state: present
+
+- name: Установка nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Добавим сервисного пользователя
+  user:
+    name: "www-data"
+    create_home: no
+    shell: /sbin/nologin
+
+- name: Download artifact from Nexus
+  nexus_artifact:
+    url: "https://nexus.praktikum-services.tech/repository/std-030-13-frontend2/1.0.1362306/sausage-store-1.0.1362306.tar.gz"
+    path: /tmp/sausage-store.tar.gz
+
+- name: Extract artifact
+  unarchive:
+    src: /tmp/sausage-store.tar.gz
+    dest: /opt/sausage-store/
+    remote_src: yes
+
+- name: копируем файл кофига nginx c локальной машины на удаленную
+  become: true
+  copy:
+    src: /home/student/sausage-store.conf
+    dest: /etc/nginx/sites-available/sausage-store.conf
+
+- name: Перезапускаем Nginx
+  systemd:
+    name: nginx
+    state: restarted

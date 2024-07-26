@@ -1,2 +1,38 @@
 ---
-# tasks file for backend
+- name: Установить пакет openjdk-16-jdk
+  become: yes
+  apt:
+    name: openjdk-16-jdk
+    state: present
+
+- name: Используем модуль maven_artifact, он скачает пакет приложения с Nexus
+  maven_artifact:
+    dest: "/opt/sausage-store/backend/lib/sausage-store.jar"
+    repository_url: "https://nexus.praktikum-services.tech/repository/std-030-13-backend/com/yandex/practicum/devops/sausage-store/1.0.1362306/sausage-store-1.0.1362306.jar"
+    group_id: "com.yandex.practicum.devops"
+    artifact_id: "sausage-store"
+    version: "1.0.1362306"
+
+- name: Запускаем jar-ник
+  become: true
+  command: java -jar /path/to/sausage-store-0.0.1-SNAPSHOT.jar
+
+- name: Добавим сервисного пользователя
+  user:
+    name: "jarservice"
+    create_home: no
+    shell: /sbin/nologin
+
+- name: Шаблонизация конфига управляет настройками приложения с помощью переменных
+  template:
+    src: /home/student/backen.service
+    dest: /etc/systemd/system/sausage-store-backend.service
+
+- name: Перечитываем конфигурацию systemd
+  systemd:
+    daemon_reload: yes
+
+- name: всё готово - запускаем!
+  service:
+    name: sausage-store-backend
+    state: running

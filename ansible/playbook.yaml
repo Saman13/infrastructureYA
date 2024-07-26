@@ -1,0 +1,16 @@
+---
+- name: Один плей для запуска backend сервиса сосисочной
+  hosts: backend
+  remote_user: ansible
+  vars:
+    ansible_ssh_private_key_file: /home/student/.ssh/id_rsa.pub
+  roles:
+    - backend
+
+- name: Второй плей для запуска frontend сервиса сосисочной
+  hosts: frontend
+  remote_user: ansible
+  vars:
+    ansible_ssh_private_key_file: /home/student/.ssh/id_rsa.pub
+  roles:
+    - frontend
