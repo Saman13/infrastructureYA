@@ -59,10 +59,13 @@
     dest: /etc/nginx/sites-available/sausage-store.conf
 
 - name: Создать символическую ссылку
-  command: ln -s /etc/nginx/sites-available/sausage-store.conf /etc/nginx/sites-enabled && rm /etc/nginx/sites-enabled/default
+  command: ln -s /etc/nginx/sites-available/sausage-store.conf /etc/nginx/sites-enabled
   become: true
 
-
+- name: Удалить дефолтную ссылку
+  command: rm /etc/nginx/sites-enabled/default
+  become: true
+  
 - name: Перезапускаем Nginx
   become: true
   systemd:
