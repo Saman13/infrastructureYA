@@ -34,7 +34,6 @@
   become: true
   user:
     name: "backend"
-    group: "backend"
     create_home: no
     shell: /sbin/nologin
 
