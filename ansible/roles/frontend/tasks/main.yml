@@ -1,0 +1,73 @@
+---
+- name: Обновление списка пакетов
+  become: true
+  apt:
+    update_cache: yes
+
+- name: Установка пакета curl
+  become: true
+  apt:
+    name: curl
+    state: present
+
+- name: Скачивание скрипта установки NodeJS
+  get_url:
+    url: "https://deb.nodesource.com/setup_16.x"
+    dest: "/tmp/setup_node.sh"
+
+- name: Запуск скрипта установки NodeJS
+  shell: "/bin/bash /tmp/setup_node.sh"
+
+- name: Установка Node.js
+  become: true
+  apt:
+    name: nodejs
+    state: present
+
+- name: Установка nginx
+  become: true
+  apt:
+    name: nginx
+    state: present
+
+- name: Добавим сервисного пользователя
+  become: true
+  user:
+    name: "www-data"
+    create_home: no
+    shell: /sbin/nologin
+
+- name: Скачать артефакт
+  get_url:
+    url: "https://nexus.praktikum-services.tech/repository/std-030-13-frontend2/{{ version }}/sausage-store-{{ version }}.tar.gz"
+    dest: /tmp/sausage-store.tar.gz
+    username: "std-030-13"
+    password: "{{ password_nexus }}"
+
+
+- name: Extract artifact
+  become: true
+  unarchive:
+    src: /tmp/sausage-store.tar.gz
+    dest: /opt/sausage-store/
+    remote_src: yes
+
+- name: копируем файл кофига nginx c локальной машины на удаленную
+  become: true
+  copy:
+    src: /home/student/sausage-store.conf
+    dest: /etc/nginx/sites-available/sausage-store.conf
+
+- name: Создать символическую ссылку
+  command: ln -s /etc/nginx/sites-available/sausage-store.conf /etc/nginx/sites-enabled
+  become: true
+
+- name: Удалить дефолтную ссылку
+  command: rm /etc/nginx/sites-enabled/default
+  become: true
+  
+- name: Перезапускаем Nginx
+  become: true
+  systemd:
+    name: nginx
+    state: restarted
