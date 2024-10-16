@@ -1,7 +1,7 @@
 stages:
   - module-pipelines
 
-frontend:
+kubernetes:
   stage: module-pipelines
   trigger:
     include:
