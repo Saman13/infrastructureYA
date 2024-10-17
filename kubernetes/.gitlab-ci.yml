@@ -1,15 +1,16 @@
 stages:
   - deploy
-  - test
-deploy-backend-job:
+deploy:
   stage: deploy
-  image: bitnami/kubectl:1.31.1
+  image: alpine/k8s:1.24.16
+  environment:
+    name: kubernetes
+    url: https://fedotov-andrey-30.k8s.praktikum-services.tech
+  before_script:
+    - mkdir -p ~/.kube
+    - echo ${KUBECONFIG_BASE64} | base64 -d > ~/.kube/config
   script:
-    - mkdir .kube
-    - echo "$kubeconfig" | base64 -d > .kube/config
-    - export KUBECONFIG=.kube/config
     - kubectl apply -f kubernetes/backend
-    - rm -f .kube/config
-  rules:
-    - when: manual
-
+    - kubectl apply -f kubernetes/backend-report
+    - kubectl apply -f kubernetes/frontend
+    - rm -f ~/.kube/config
