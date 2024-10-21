@@ -8,7 +8,7 @@ data:
     user nginx;
         server {
 
-          listen 8080;
+          listen 80;
 
           location / {
             root   /usr/share/nginx/html;
@@ -17,7 +17,7 @@ data:
           }
 
           location /api {
-              proxy_pass http://backend:8080;
+              proxy_pass http://backend:80;
           }
         }
       }
