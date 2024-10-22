@@ -30,25 +30,5 @@ spec:
                 secretKeyRef:
                   name: backend-report
                   key: db
-            - name: MONGO_USER
-              valueFrom:
-                secretKeyRef:
-                  name: backend-report
-                  key: user
-            - name: MONGO_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: backend-report
-                  key: password
-            - name: MONGO_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: backend-report
-                  key: host
-            - name: MONGO_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  name: backend-report
-                  key: database
       imagePullSecrets:
         - name: docker-config-secret
