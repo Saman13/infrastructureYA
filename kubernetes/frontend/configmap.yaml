@@ -5,10 +5,10 @@ metadata:
   name: nginx-conf
 data:
   nginx.conf: |
-    http {
-      events {
+    events {
         worker_connections  1024;
-      }
+    }
+    http {
       server {
     
         listen 80;
