@@ -47,6 +47,12 @@ spec:
                 secretKeyRef:
                   name: pg
                   key: password
+            - name: SPRING_DATA_MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: pg
+                  key: mongourl
+
           ports:
             - name: backend
               containerPort: 8080
