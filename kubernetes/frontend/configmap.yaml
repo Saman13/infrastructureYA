@@ -6,9 +6,12 @@ metadata:
 data:
   nginx.conf: |
     http {
+      events {
+        worker_connections  1024;
+      }
       server {
     
-        listen 8080;
+        listen 80;
 
         location / {
           root   /usr/share/nginx/html;
