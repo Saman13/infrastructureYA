@@ -10,7 +10,7 @@ deploy:
     - mkdir -p ~/.kube
     - echo ${KUBECONFIG_BASE64} | base64 -d > ~/.kube/config
   script:
-    - kubectl delete -f kubernetes/backend-report/deployment.yaml
+    - kubectl delete -f kubernetes/backend/deployment.yaml
     - kubectl apply -f kubernetes/backend
     - kubectl apply -f kubernetes/backend-report
     - kubectl apply -f kubernetes/frontend
