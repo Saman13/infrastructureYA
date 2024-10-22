@@ -25,10 +25,30 @@ spec:
             - name: backend-report
               containerPort: 8080
           env:
-            - name: DB
+            - name: REPORTS_MONGODB_URI
               valueFrom:
                 secretKeyRef:
                   name: backend-report
-                  key: DB
+                  key: db
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: backend-report
+                  key: user
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: backend-report
+                  key: password
+            - name: MONGO_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: backend-report
+                  key: host
+            - name: MONGO_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: backend-report
+                  key: database
       imagePullSecrets:
         - name: docker-config-secret
