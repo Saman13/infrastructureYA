@@ -1,0 +1,19 @@
+stages:
+  - deploy
+deploy:
+  stage: deploy
+  image: alpine/k8s:1.24.16
+  environment:
+    name: kubernetes
+    url: https://fedotov-andrey-30.k8s.praktikum-services.tech
+  before_script:
+    - mkdir -p ~/.kube
+    - echo ${KUBECONFIG_BASE64} | base64 -d > ~/.kube/config
+  script:
+    - kubectl delete -f kubernetes/backend/deployment.yaml
+    - kubectl apply -f kubernetes/backend
+    - kubectl apply -f kubernetes/backend-report
+    - kubectl apply -f kubernetes/frontend
+    - rm -f ~/.kube/config
+
+

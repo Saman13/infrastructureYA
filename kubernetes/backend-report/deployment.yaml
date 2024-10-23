@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-report
+  labels:
+    app: backend-report
+spec:
+  revisionHistoryLimit: 15
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: backend-report
+  template:
+    metadata:
+      labels:
+        app: backend-report
+    spec:
+      containers:
+        - name: backend-report
+          image: gitlab.praktikum-services.ru:5050/std-030-13/sausage/sausage-backend-report:latest
+          imagePullPolicy: Always
+          ports:
+            - name: backend-report
+              containerPort: 8080
+          env:
+            - name: DB
+              valueFrom:
+                secretKeyRef:
+                  name: backend-report
+                  key: db
+      imagePullSecrets:
+        - name: docker-config-secret
