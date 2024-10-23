@@ -12,7 +12,9 @@ deploy:
   script:
     - kubectl delete -f kubernetes/backend/deployment.yaml
     - kubectl apply -f kubernetes/backend
+    - kubectl wait --for=condition=ready pod/backend --timeout=60s
     - kubectl apply -f kubernetes/backend-report
+    - kubectl wait --for=condition=ready pod/backend-report --timeout=60s
     - kubectl apply -f kubernetes/frontend
     - rm -f ~/.kube/config
 
