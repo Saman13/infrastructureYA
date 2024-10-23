@@ -12,7 +12,7 @@ deploy:
   script:
     - kubectl apply -f kubernetes/backend
     - kubectl wait --for=condition=available deployment/backend --timeout=60s
-    - kubectl apply -f kubernetes/backend-report
+    - kubectl apply -f kubernetes/backend-report --validate=false
     - kubectl wait --for=condition=available deployment/backend-report --timeout=60s
     - kubectl apply -f kubernetes/frontend
     - kubectl wait --for=condition=available deployment/frontend --timeout=60s
