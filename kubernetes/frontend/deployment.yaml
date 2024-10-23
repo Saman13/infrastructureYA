@@ -5,6 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
+  revisionHistoryLimit: 12
   replicas: 1
   strategy:
     type: Recreate
