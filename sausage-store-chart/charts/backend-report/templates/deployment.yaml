@@ -47,3 +47,12 @@ spec:
                   key: db
       imagePullSecrets:
         - name: docker-config-secret
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: backend-report
+                topologyKey: "kubernetes.io/hostname"
