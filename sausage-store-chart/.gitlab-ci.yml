@@ -10,4 +10,4 @@ deploy:
     - helm package sausage-store-chart
     - echo ${NEXUS_HELM_REPO}
     - ls -la
-    - curl -u ${NEXUS_HELM_USER}:${NEXUS_HELM_PASS} --upload-file sausage-store-*.tgz ${NEXUS_HELM_REPO}
+    - curl -u ${NEXUS_HELM_USER}:${NEXUS_HELM_PASS} --upload-file sausage-store-0.1.1.tgz ${NEXUS_HELM_REPO}
