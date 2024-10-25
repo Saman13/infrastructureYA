@@ -3,7 +3,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: frontend
-  namespace: std-030-13
+  namespace: { { .Release.Namespace } }
 spec:
   ingressClassName: "nginx"
   tls:
