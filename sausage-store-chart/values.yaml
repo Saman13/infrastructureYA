@@ -10,7 +10,7 @@ backend:
   strategy:
     type: RollingUpdate
   image:
-    repository: gitlab.praktikum-services.ru:5050/std-030-13/sausage/sausage-backend:latest
+    repository: gitlab.praktikum-services.ru:5050/std-030-13/sausage/sausage-backend
     pullPolicy: Always
     tag: latest
   rollingUpdate:
@@ -41,7 +41,7 @@ backend-report:
   strategy:
     type: Recreate
   image:
-    repository: gitlab.praktikum-services.ru:5050/std-030-13/sausage/sausage-backend-report:latest
+    repository: gitlab.praktikum-services.ru:5050/std-030-13/sausage/sausage-backend-report
     pullPolicy: Always
     tag: latest
     requests:
@@ -64,7 +64,7 @@ frontend:
   strategy:
     type: Recreate
   image:
-    repository: gitlab.praktikum-services.ru:5050/std-030-13/sausage/sausage-frontend:latest
+    repository: gitlab.praktikum-services.ru:5050/std-030-13/sausage/sausage-frontend
     pullPolicy: Always
     tag: latest
     requests:
