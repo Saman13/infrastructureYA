@@ -9,6 +9,4 @@ deploy:
   script:
     - helm package sausage-store-chart
     - echo ${NEXUS_HELM_REPO}
-    - ls -la
     - curl -v -u ${NEXUS_HELM_USER}:${NEXUS_HELM_PASS} -L --upload-file sausage-store-*.tgz ${NEXUS_HELM_REPO}
-    - curl -v -u "${NEXUS_HELM_USER}:${NEXUS_HELM_PASS}" --upload-file sausage-store-*.tgz ${NEXUS_REPO_URL}/sausage-store/sausage-store-${VERSION}.tgz
