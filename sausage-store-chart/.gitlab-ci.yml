@@ -1,0 +1,12 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  image:
+    name: alpine/helm:3.16.2
+    entrypoint: [ '' ]
+  script:
+    - helm package sausage-store-chart
+    - echo ${NEXUS_HELM_REPO}
+    - curl -v -u ${NEXUS_HELM_USER}:${NEXUS_HELM_PASS} -L --upload-file sausage-store-*.tgz ${NEXUS_HELM_REPO}
