@@ -2,7 +2,6 @@ global:
   revisionHistoryLimit: 12
   proxyPassHost: backend
   proxyPassPort: 8080
-  dockerconfigjson: ewoJImF1dGhzIjogewoJCSJnaXRsYWIucHJha3Rpa3VtLXNlcnZpY2VzLnJ1OjUwNTAiOiB7CgkJCSJhdXRoIjogIloybDBiR0ZpSzJSbGNHeHZlUzEwYjJ0bGJpMXpZVzFoYmpwbmJHUjBMWEp2UTA1R1ZGTk9hM2xVY2xWRU4yVTVlSHBHIgoJCX0KCX0KfQ==
   environment: production
 
 backend:
