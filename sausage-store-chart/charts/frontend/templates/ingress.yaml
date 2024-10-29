@@ -4,11 +4,13 @@ kind: Ingress
 metadata:
   name: frontend
   namespace: {{.Release.Namespace}}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: "nginx"
   tls:
-    hosts:
-      - "{{ .Values.ingress.tls.hosts }}"
+    - hosts:
+        - "{{ .Values.ingress.tls.hosts }}"
   rules:
     - host: "{{ .Values.ingress.rules.host }}"
       http:
