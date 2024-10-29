@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: { { .Chart.Name } }
-  namespace: { { .Release.Namespace } }
+  name: {{.Chart.Name}}
+  namespace: {{.Release.Namespace}}
   labels:
-    app: { { .Chart.Name } }
+    app: {{.Chart.Name}}
     app.kubernetes.io/name: sausage-{{ .Chart.Name }}
     app.kubernetes.io/instance: "{{ .Release.Name }}"
     app.kubernetes.io/version: "{{ .Chart.AppVersion}}"
@@ -14,37 +14,37 @@ metadata:
     app.kubernetes.io/part-of: sausage-store
     env: "{{ .Values.global.environment }}"
 spec:
-  replicas: { { .Values.replicas } }
-  revisionHistoryLimit: { { .Values.global.revisionHistoryLimit } }
+  replicas: {{.Values.replicas}}
+  revisionHistoryLimit: {{.Values.global.revisionHistoryLimit}}
   strategy:
-    type: { { .Values.strategy.type } }
+    type: {{.Values.strategy.type}}
   selector:
     matchLabels:
-      app: { { .Chart.Name } }
+      app: {{.Chart.Name}}
   template:
     metadata:
       labels:
-        app: { { .Chart.Name } }
+        app: {{.Chart.Name}}
     spec:
       containers:
-        - name: { { .Chart.Name } }
-          image: { { .Values.image.repository } }:{{ .Values.image.tag }}
-          imagePullPolicy: { { .Values.image.pullPolicy } }
+        - name: {{.Chart.Name}}
+          image: {{.Values.image.repository}}:{{ .Values.image.tag }}
+          imagePullPolicy: {{.Values.image.pullPolicy}}
           resources:
             requests:
-              cpu: { { .Values.image.requests.cpu } }
-              memory: { { .Values.image.requests.memory } }
+              cpu: {{.Values.image.requests.cpu}}
+              memory: {{.Values.image.requests.memory}}
             limits:
-              cpu: { { .Values.image.limits.cpu } }
-              memory: { { .Values.image.limits.memory } }
+              cpu: {{.Values.image.limits.cpu}}
+              memory: {{.Values.image.limits.memory}}
           volumeMounts:
             - name: nginx-conf
               mountPath: /etc/nginx/nginx.conf
               subPath: nginx.conf
               readOnly: true
           ports:
-            - name: { { .Chart.Name } }
-              containerPort: { { .Values.containerPort } }
+            - name: {{.Chart.Name}}
+              containerPort: {{.Values.containerPort}}
       imagePullSecrets:
         - name: docker-config-secret
       volumes:
