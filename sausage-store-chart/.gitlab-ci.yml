@@ -5,9 +5,17 @@ deploy:
   stage: deploy
   image:
     name: alpine/helm:3.16.2
-    entrypoint: [ '' ]
+    entrypoint: ['']
+    environment:
+      name: kubernetes
+      url: https://fedotov-andrey-30.k8s.praktikum-services.tech
+    before_script:
+      - mkdir -p ~/.kube
+      - echo ${KUBECONFIG_BASE64} | base64 -d > ~/.kube/config
+
   script:
     - helm package sausage-store-chart
     - echo ${NEXUS_HELM_REPO}
     - curl -v -u ${NEXUS_HELM_USER}:${NEXUS_HELM_PASS} -L --upload-file sausage-store-*.tgz ${NEXUS_HELM_REPO}
+    - helm install sausage-store sausage-store-chart -n std-030-13
 
