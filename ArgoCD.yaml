@@ -11,7 +11,7 @@ spec:
     path: ''
     repoURL: >-
       https://nexus.praktikum-services.tech/repository/sausage-store-helm-andrey-fedotov-30/
-    targetRevision: 0.1.13
+    targetRevision: 0.1.15
     chart: sausage-store
     helm:
       values: |
@@ -106,6 +106,6 @@ spec:
       selfHeal: false
 syncPolicy:
   automated:
-    prune: false
-    selfHeal: false
+    prune: true
+    selfHeal: true
 
