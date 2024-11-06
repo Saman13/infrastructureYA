@@ -6,12 +6,12 @@ deploy:
   image:
     name: alpine/helm:3.16.2
     entrypoint: ['']
-    environment:
-      name: kubernetes
-      url: https://fedotov-andrey-30.k8s.praktikum-services.tech
-    before_script:
-      - mkdir -p ~/.kube
-      - echo ${KUBECONFIG_BASE64} | base64 -d > ~/.kube/config
+  environment:
+    name: kubernetes
+    url: https://fedotov-andrey-30.k8s.praktikum-services.tech
+  before_script:
+    - mkdir -p ~/.kube
+    - echo ${KUBECONFIG_BASE64} | base64 -d > ~/.kube/config
 
   script:
     - helm package sausage-store-chart
