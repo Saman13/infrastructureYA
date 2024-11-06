@@ -11,11 +11,8 @@ deploy:
     - echo ${KUBECONFIG_BASE64} | base64 -d > ~/.kube/config
   script:
     - kubectl delete -f kubernetes/backend
-    - kubectl wait --for=condition=available deployment/backend --timeout=60s
     - kubectl delete -f kubernetes/backend-report
-    - kubectl wait --for=condition=available deployment/backend-report --timeout=60s
     - kubectl delete -f kubernetes/frontend
-    - kubectl wait --for=condition=available deployment/frontend --timeout=60s
     - rm -f ~/.kube/config
 
 
