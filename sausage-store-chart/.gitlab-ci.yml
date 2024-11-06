@@ -18,4 +18,6 @@ deploy:
     - echo ${NEXUS_HELM_REPO}
     - curl -v -u ${NEXUS_HELM_USER}:${NEXUS_HELM_PASS} -L --upload-file sausage-store-*.tgz ${NEXUS_HELM_REPO}
     - helm upgrade sausage-store sausage-store-chart/ -n std-030-13
+    - rm -f ~/.kube/config
+
 

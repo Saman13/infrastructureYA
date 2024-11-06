@@ -26,12 +26,12 @@ spec:
       app: {{.Chart.Name}}
   template:
     metadata:
-      labels:
-        app: {{.Chart.Name}}
-      annotation:
+      annotations:
         prometheus.io/path: /actuator/prometheus
         prometheus.io/port: "8080"
         prometheus.io/scrape: "true"
+      labels:
+        app: {{.Chart.Name}}
     spec:
       containers:
         - name: {{.Chart.Name}}
