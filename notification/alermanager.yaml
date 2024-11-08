@@ -29,4 +29,4 @@ data:
       - send_resolved: true
         bot_token: '{{ .Values.telegramBotToken }}'
         chat_id: -1002138916913
-        message: "std-030-13 Alerts:\n{{ range .Alerts }}{{ .Annotations.description }}\n{{ end }}"
+        message: "{{ range .Alerts }}Уровень: {{ .Labels.severity }}/n Событие: {{ .Annotations.summary }}Описание: {{ .Annotations.description }}{{ end }}"

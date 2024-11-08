@@ -9,9 +9,8 @@ groups:
           severity: critical
           component: "Backend"
         annotations:
-          summary: "Backend instance is down"
-          description: "The backend instance has been down for more than one minute."
-
+          summary: "Сервис Backend недоступен"
+          description: "Сервис backend в namespace std-030-13 недоступен более 1 минуты"
         # Оповещение о запросах с кодом ошибки 500
       - alert: Http_500_Errors
         expr: rate(http_server_requests_seconds_count{app="backend", status="500"}[5m]) > 0
@@ -23,7 +22,6 @@ groups:
         annotations:
           summary: "HTTP 500 Errors Detected"
           description: "HTTP 500 errors are occurring on the backend."
-
         # Оповещение для успешных POST-запросов к /api/orders со значением задержки более 100ms для 95 перцентиля в течение 5 минут
       - alert: HighLatencyOrders
         expr: histogram_quantile(0.95, rate(http_server_requests_seconds_bucket{app="backend", method="POST", uri="/api/orders", status="200"}[5m])) > 0.1
@@ -34,7 +32,6 @@ groups:
         annotations:
           summary: "High Latency for /api/orders POST Requests"
           description: "95th percentile latency for POST requests to /api/orders is greater than 100ms over the last 5 minutes."
-
         # Оповещение для /actuator/prometheus с любым кодом ошибки за временной промежуток в две минуты
       - alert: PrometheusEndpointErrors
         expr: rate(http_server_requests_seconds_count{app="backend", uri="/actuator/prometheus", status=~"4..|5.."}[2m]) > 0
