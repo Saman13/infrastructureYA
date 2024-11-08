@@ -37,13 +37,6 @@ spec:
         - name: {{.Chart.Name}}
           image: {{.Values.image.repository}}:{{ .Values.image.tag }}
           imagePullPolicy: {{.Values.image.pullPolicy}}
-          resources:
-            requests:
-              cpu: {{.Values.image.requests.cpu}}
-              memory: {{.Values.image.requests.memory}}
-            limits:
-              cpu: {{.Values.image.limits.cpu}}
-              memory: {{.Values.image.limits.memory}}
           env:
             - name: SPRING_DATASOURCE_URL
               valueFrom:

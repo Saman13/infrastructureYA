@@ -12,13 +12,6 @@ backend:
     repository: gitlab.praktikum-services.ru:5050/std-030-13/sausage/sausage-backend
     pullPolicy: Always
     tag: latest
-    requests:
-      cpu: "100m"
-      memory: "64Mi"
-    limits:
-      cpu: "200m"
-      memory: "128Mi"
-
   rollingUpdate:
     maxUnavailable: 2
     maxSurge: 20%
