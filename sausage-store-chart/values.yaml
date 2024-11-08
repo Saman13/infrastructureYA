@@ -13,10 +13,10 @@ backend:
     pullPolicy: Always
     tag: latest
     requests:
-      cpu: "10m"
+      cpu: "100m"
       memory: "64Mi"
     limits:
-      cpu: "20m"
+      cpu: "200m"
       memory: "128Mi"
 
   rollingUpdate:
@@ -47,10 +47,10 @@ backend-report:
     pullPolicy: Always
     tag: latest
     requests:
-      cpu: "10m"
+      cpu: "100m"
       memory: "64Mi"
     limits:
-      cpu: "20m"
+      cpu: "200m"
       memory: "128Mi"
   containerPort: 8080
   minReplicas: 1
